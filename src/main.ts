@@ -28,28 +28,29 @@ function setup() {
     return;
   }
 
-  // Add click event to the increment button
-  incrementButton.addEventListener("click", () => {
-    counter++;
+  function updateDisplay() {
+    if (!counterDisplay) return;
     counterDisplay.innerHTML = `${counter}`;
     document.title = "Clicked " + counter;
     document.body.style.backgroundColor = counter % 2 ? "pink" : "lightblue";
+  }
+
+  // Add click event to the increment button
+  incrementButton.addEventListener("click", () => {
+    counter++;
+    updateDisplay();
   });
 
   // Add click event to the decrement button
   decrementButton.addEventListener("click", () => {
     counter--;
-    counterDisplay.innerHTML = `${counter}`;
-    document.title = "Clicked " + counter;
-    document.body.style.backgroundColor = counter % 2 ? "pink" : "lightblue";
+    updateDisplay();
   });
 
   // Add click event to the reset button
   resetButton.addEventListener("click", () => {
     counter = 0;
-    counterDisplay.innerHTML = `${counter}`;
-    document.title = "Clicked " + counter;
-    document.body.style.backgroundColor = counter % 2 ? "pink" : "lightblue";
+    updateDisplay();
   });
 }
 
